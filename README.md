@@ -6,7 +6,7 @@ domain:
   - external-epistemic-memory
   - truth-maintenance-systems
   - llm-knowledge-management
-license: MIT
+license: mit
 base_network: null
 source_repos:
   - benthomasson/ftl-reasons
@@ -114,4 +114,4 @@ Built from exploration of [benthomasson/ftl-reasons](https://github.com/benthoma
 
 ## License
 
-MIT
+mit
