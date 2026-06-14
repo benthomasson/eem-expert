@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "source": "agents-python-expert DERIVED beliefs",
-    "domain": "agents-python (Red Hat Agents Python)",
+    "source": "agent-pipeline-expert DERIVED beliefs",
+    "domain": "an agent pipeline",
     "total": 20,
     "type": "multiple_choice",
     "design_notes": "Architectural questions that test reasoning about design trade-offs, cross-module interactions, and system-level properties. Answers exist in DERIVED beliefs but require reading multiple files and synthesizing judgment from code. Designed to test H5: beliefs help more on architectural questions than factual ones."

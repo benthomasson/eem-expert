@@ -1,7 +1,7 @@
 ---
 schema_version: "1.0"
 project_name: "reasons"
-updated_at: "2026-06-14T11:46:46+00:00"
+updated_at: "2026-06-14T12:26:56+00:00"
 node_count: 103
 generator: ftl-reasons/0.46.0
 ---
@@ -188,7 +188,7 @@ The eval harnesses, question sets, JSON result files, Langfuse traces, and metho
 - Source: Claude review of llmeem.ai, 2026-06-14
 
 ### evidence-expert-vs-baseline [IN] OBSERVATION
-Expert-service with EEM scores 88% A-grade vs agents-python 33% on same 50 questions, 15x faster
+Expert-service with EEM scores 88% A-grade vs an agent pipeline 33% on same 50 questions, 15x faster
 - Source: repo:beliefs-pi/CLAUDE.md
 
 ### evidence-model-compensation [IN] OBSERVATION
@@ -346,7 +346,7 @@ Architecture pattern in practice: reasons.db (SQLite) is the primary store for a
 
 ### reasons-for-maintenance-beliefs-for-queries [IN] DERIVED
 Architecture pattern: use reasons database for all structural operations (add, retract, derive, review). Export to beliefs.md for querying (fast, human-readable, grep-able). Keep both in sync via reasons export-markdown
-- Source: repo:beliefs-pi/entries/2026/03/24/agents-python-expert-primary-store-migration-complete-and-deep-reasoning-chains.md
+- Source: repo:beliefs-pi/entries/2026/03/24/agent-pipeline-expert-primary-store-migration-complete-and-deep-reasoning-chains.md
 - Depends on: beliefs-cli-vs-reasons-cli, reasons-db-vs-beliefs-md
 
 ### restoration [IN] DERIVED

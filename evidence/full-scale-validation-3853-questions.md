@@ -4,7 +4,7 @@
 
 ## Summary
 
-Opus + dual-path achieves 98.5% A/B (2549A, 1246B, 58C) across all 3,853 questions in the agents-python dataset. Zero D/F grades. This is a 16pp improvement over the original TMS-only eval (82%). The 50-question sample results (100% A/B) held up remarkably well at full scale, with the 1.5% gap attributable to narrow operational details not covered by either retrieval path.
+Opus + dual-path achieves 98.5% A/B (2549A, 1246B, 58C) across all 3,853 questions in the an agent pipeline dataset. Zero D/F grades. This is a 16pp improvement over the original TMS-only eval (82%). The 50-question sample results (100% A/B) held up remarkably well at full scale, with the 1.5% gap attributable to narrow operational details not covered by either retrieval path.
 
 ## Results
 

@@ -1,0 +1,205 @@
+{
+  "timestamp": "2026-05-30T06:52:21",
+  "status": "complete",
+  "model": "claude",
+  "timeout": 300,
+  "dry_run": false,
+  "filters": {
+    "belief_ids": null,
+    "min_depth": null,
+    "depends_on": null,
+    "namespace": null,
+    "sample": null,
+    "visible_to": null
+  },
+  "reviewed": 21,
+  "total_derived": 41,
+  "summary": {
+    "invalid": 6,
+    "insufficient": 6,
+    "unnecessary": 6
+  },
+  "results": [
+    {
+      "id": "amortization-argument",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The Monday/Friday metaphor introduces incremental EEM growth not stated in either antecedent, which only discuss one-time construction cost and amortization over queries."
+    },
+    {
+      "id": "automated-overnight-construction",
+      "valid": false,
+      "sufficient": false,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "construction-cost-measured"
+      ],
+      "comment": "The claim that three of six validations ran autonomously with no human intervention is a smuggled premise not present in any antecedent; domain independence and predictable failure modes do not entail automation readiness."
+    },
+    {
+      "id": "challenge-defend",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "ftl-reasons-is-tms"
+      ],
+      "comment": "Justification 2 is valid; ftl-reasons-implementation alone covers both the TMS architecture and challenge/defend mechanics (challenge\u2192OUT, defend neutralizes, multi-level chains), making ftl-reasons-is-tms redundant."
+    },
+    {
+      "id": "continuity-human-problem",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim that short compaction cycles are better than large context windows is a design recommendation not supported by the antecedents, which only establish that compaction is destructive and EEM survives it \u2014 the tradeoff analysis is absent."
+    },
+    {
+      "id": "derive-then-review",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Justification 2 is sound: hybrid-tms provides the mechanism (symbolic TMS + LLM operations) and derive-overshoot-observed provides the empirical evidence including the insight that working through retractions reveals smuggled premises."
+    },
+    {
+      "id": "dual-path-architecture",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Justification 2 is sound: cognitive-budget provides the design principle (focused passes within attention budget) and dual-path-design-evidence provides the architecture and 98.5% empirical result; both contribute distinctly."
+    },
+    {
+      "id": "eem-compensates-model-size",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "eem-works"
+      ],
+      "comment": "evidence-model-compensation alone directly states the claim (Sonnet+beliefs \u2248 Opus without, Haiku dual-path 94% \u2248 Opus 98%); eem-works is a general conclusion that adds no specific support for the model-size compensation finding."
+    },
+    {
+      "id": "eem-replaces-confidence",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "confidence-unreliable establishes that self-assessed confidence is unreliable (r=0.14\u20130.28) and eem-epistemic provides the alternative (auditable justification chains); both are load-bearing for the shift from confidence to justification."
+    },
+    {
+      "id": "eem-three-properties",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent contributes exactly one of the three defining properties; removing any one leaves the compositional definition incomplete."
+    },
+    {
+      "id": "eem-vs-context",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Justification 2 is sound: eem-external provides the persistence claim and compaction-destroys-networks provides the quantified evidence (33 compaction events); both are load-bearing."
+    },
+    {
+      "id": "eem-vs-knowledge-graphs",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "ontology-vs-epistemology provides the KG contrast and 'implicit epistemology' insight; eem-epistemic adds derivation depth and contradiction tracking (nogoods) not mentioned in the other antecedent."
+    },
+    {
+      "id": "eem-vs-parametric",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim introduces 'separable' and 'copyable' as EEM properties not listed in eem-external (which only states inspectable, editable, auditable, shareable); these are smuggled premises."
+    },
+    {
+      "id": "eem-vs-rag",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim is a direct restatement of eem-epistemic, which explicitly contrasts EEM with RAG on the epistemic dimension \u2014 justification chains, truth values, retraction cascades, and contradiction tracking."
+    },
+    {
+      "id": "eem-works",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "evidence-beliefs-ablation"
+      ],
+      "comment": "evidence-beliefs-ablation addresses prompt strategy (expert vs generic) not whether EEM improves performance; the other two antecedents (88% vs 33% baseline, 98.5% dual-path) directly establish the claim."
+    },
+    {
+      "id": "expert-pipeline",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "hybrid-tms",
+        "derive-then-review"
+      ],
+      "comment": "In justification 2, expert-pipeline-design alone describes the full pipeline (fetch-docs through export) and its value proposition including derive producing new knowledge; the other two antecedents provide background but are not load-bearing."
+    },
+    {
+      "id": "expert-prompt-paradox",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim is a direct restatement of evidence-beliefs-ablation's empirical finding (Opus 100% vs 94.2%, Sonnet 94.2% vs 91.8%) and its causal explanation."
+    },
+    {
+      "id": "ftl-reasons-is-tms",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Justification 2 is sound: tms-doyle-1979 provides the theoretical framework (SL justifications, problem-solver slot) and ftl-reasons-implementation provides the implementation evidence; both needed to support 'implements actual Doyle-style TMS.'"
+    },
+    {
+      "id": "ftl-reasons-quick-start",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The claim introduces 'reasons assert' and the '--source' flag which are not documented in either antecedent; eem-cli-interface lists retract but not assert, and lists --sl but not --source."
+    },
+    {
+      "id": "generate-and-critique",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "No antecedent mentions the belief registry or externalizing critic judgments; the problem diagnosis (unreliable confidence, harmful self-critique) follows from the antecedents but the proposed solution is entirely unsupported."
+    },
+    {
+      "id": "how-agents-use-eem",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "hybrid-tms"
+      ],
+      "comment": "In justification 2, eem-cli-interface already covers derive, review-beliefs, and contradiction detection commands, and expert-prompt-paradox covers the no-expert-prompt finding; hybrid-tms adds architectural context but is not load-bearing for a usage-focused claim."
+    },
+    {
+      "id": "wide-not-deep",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Justification 2 is sound \u2014 each antecedent covers a distinct sub-claim (depth ceiling vs. reset methodology) \u2014 but Justification 1 alone is insufficient since evidence-depth-ceiling does not support the 'experiments reset derivation depth' portion of the conclusion, and characterizing the ceiling as 'structural' rather than 'empirical' is a mild interpretive addition."
+    }
+  ]
+}

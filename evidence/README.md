@@ -7,7 +7,7 @@ Methodology entries and experimental results backing the claims made on [llmeem.
 | Claim | Evidence File | Key Numbers |
 |-------|--------------|-------------|
 | 98.5% A/B across 3,853 questions | [full-scale-validation-3853-questions.md](full-scale-validation-3853-questions.md) | 2549 A + 1246 B + 58 C, zero D/F. Opus, dual-path architecture |
-| 88% vs 33% expert-vs-baseline | [three-way-eval-88-vs-33.md](three-way-eval-88-vs-33.md) | 50 questions, 5 models tested. Expert-service 88% A (Opus) vs agents-python 33% A |
+| 88% vs 33% expert-vs-baseline | [three-way-eval-88-vs-33.md](three-way-eval-88-vs-33.md) | 50 questions, 5 models tested. Expert-service 88% A (Opus) vs an agent pipeline 33% A |
 | 0.53x cost, +12.7pp recall | [eem-vs-scratch-eval.md](eem-vs-scratch-eval.md) | 55 questions (40 MC + 15 OE). AAP domain. EEM $7.25 vs from-scratch $13.61 |
 | Beliefs +12-14pp on architectural questions | [architectural-ablation-results.md](architectural-ablation-results.md) | 2,100 invocations. 4 models × 3 conditions × 5 runs × 35 questions |
 | Confidence r=0.14-0.28, revision damages accuracy | [confidence-experiment-results.md](confidence-experiment-results.md) | 4 models. Revision: -3pp (Opus) to -41.5pp (Pro) |

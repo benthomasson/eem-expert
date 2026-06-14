@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-05-30T07:07:36",
+  "status": "complete",
+  "model": "claude",
+  "timeout": 600,
+  "exhaust": true,
+  "filters": {
+    "domain": null,
+    "topic": null,
+    "min_depth": null,
+    "max_depth": null,
+    "premises": false,
+    "has_dependents": false,
+    "budget": 300,
+    "sample": true,
+    "cluster": false,
+    "intra_cluster": false,
+    "embedding_model": null,
+    "n_clusters": null,
+    "prompt_file": null
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "network_stats": {
+        "total_in": 90,
+        "total_derived": 41,
+        "max_depth": 5,
+        "agents": 0,
+        "agent_names": [],
+        "budget": 300,
+        "sample": true
+      },
+      "proposals_found": 0,
+      "valid": 0,
+      "skipped": [],
+      "applied": [],
+      "added": 0
+    }
+  ],
+  "total_added": 0
+}

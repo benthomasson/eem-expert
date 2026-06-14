@@ -1,0 +1,304 @@
+{
+  "timestamp": "2026-05-29T17:24:36",
+  "status": "complete",
+  "model": "claude",
+  "timeout": 300,
+  "dry_run": false,
+  "filters": {
+    "belief_ids": null,
+    "min_depth": null,
+    "depends_on": null,
+    "namespace": null,
+    "sample": null,
+    "visible_to": null
+  },
+  "reviewed": 34,
+  "total_derived": 34,
+  "summary": {
+    "invalid": 20,
+    "insufficient": 20,
+    "unnecessary": 4
+  },
+  "results": [
+    {
+      "id": "challenge-defend",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedent describes general TMS architecture but says nothing about challenge/defend mechanics \u2014 the specific behavior (challenge\u2192OUT, defend neutralizes, multi-level chains, preserves original argument) is not derivable from the TMS description and requires implementation evidence."
+    },
+    {
+      "id": "continuity-human-problem",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The visibility solution follows from eem-external's inspectability, but 'the human cannot track what the LLM has in context' is an unstated assumption about context opacity, and 'short compaction cycles are better than large context windows' is a comparative design claim not entailed by the antecedent."
+    },
+    {
+      "id": "derive-then-review",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedent establishes that derive and review-beliefs exist as LLM operations, but the empirical claims about overshoot behavior (over-generates, over-retracts) and that working through candidate retractions yields insights are observations requiring separate evidence, not logical consequences of the architecture."
+    },
+    {
+      "id": "dual-path-architecture",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The cognitive-budget principle motivates separating passes, but the specific dual-path design (TMS path + FTS path + merge pass) is one of many possible architectures satisfying that principle \u2014 it's a design choice, not a derivation, and requires evidence that this particular decomposition works."
+    },
+    {
+      "id": "eem-compensates-model-size",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "eem-works"
+      ],
+      "comment": "evidence-model-compensation directly states the claim (Sonnet+beliefs \u2248 Opus without, Haiku dual-path 94% \u2248 Opus 98%); eem-works adds general context but is not load-bearing for this specific conclusion."
+    },
+    {
+      "id": "eem-replaces-confidence",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "confidence-unreliable establishes the problem (confidence doesn't track accuracy) and eem-epistemic provides the alternative (justification chains with truth values), making the shift from confidence to justification a sound inference from both antecedents."
+    },
+    {
+      "id": "eem-three-properties",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Each antecedent contributes exactly one of the three properties, and each antecedent explicitly distinguishes its property as differentiating EEM from alternatives, supporting the 'load-bearing' characterization."
+    },
+    {
+      "id": "eem-vs-context",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "EEM's persistence follows from eem-external, but 'context compaction destroys justification networks (quantified across 33 measured compaction events)' introduces specific empirical data not present in or derivable from the antecedent."
+    },
+    {
+      "id": "eem-vs-parametric",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The contrast between parametric opacity and EEM auditability follows from the antecedents, but the ranking claim that auditability is 'the most epistemically important' of six externality properties is a value judgment not entailed by either antecedent."
+    },
+    {
+      "id": "eem-vs-rag",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedent explicitly states 'This distinguishes EEM from RAG (which is external semantic memory but not epistemic)' \u2014 the claim is a faithful expansion of what the antecedent already asserts."
+    },
+    {
+      "id": "eem-works",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "evidence-beliefs-ablation"
+      ],
+      "comment": "evidence-expert-vs-baseline (88% vs 33%) and evidence-dual-path (98.5% A/B, zero D/F) directly demonstrate dramatic improvement; evidence-beliefs-ablation's primary finding is about prompt design (expert prompt hurts), with EEM effectiveness being a secondary implication."
+    },
+    {
+      "id": "expert-pipeline",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedents provide the architecture and derive-then-review methodology, but the specific pipeline stages (chunk source material, propose beliefs, human acceptance gate, export) and the claim that value accrues at each stage are design prescriptions not derivable from the architecture alone."
+    },
+    {
+      "id": "expert-prompt-paradox",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedent directly states that beliefs alone outperform beliefs+expert prompt and provides the causal mechanism (agent trusts expertise instead of consulting the knowledge base) \u2014 the claim faithfully restates this finding."
+    },
+    {
+      "id": "ftl-reasons-is-tms",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedent describes Doyle's TMS theory; the claim asserts that ftl-reasons faithfully implements it \u2014 this is an empirical claim about a software artifact that cannot be derived from the theory it claims to implement, and requires implementation evidence."
+    },
+    {
+      "id": "generate-and-critique",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedents establish that LLMs are unreliable critics (confidence doesn't track accuracy, self-critique worsens answers), but 'extraordinary generators' is an unstated assumption and the belief registry as a solution is a design proposal not entailed by the evidence of the problem."
+    },
+    {
+      "id": "how-agents-use-eem",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedents establish available operations (derive, review, contradiction detection) and the prompt insight (don't say 'expert'), but the specific prescriptive workflow (query\u2192cite\u2192derive\u2192review\u2192nogoods) is a design recommendation not derivable from the architecture and one ablation result."
+    },
+    {
+      "id": "how-humans-use-eem",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedents establish inspectability (eem-external) and the visibility motivation (continuity-human-problem), but the specific commands and workflow (beliefs.md, explain, challenge, status, check-stale) are implementation details not derivable from these principles."
+    },
+    {
+      "id": "how-to-start",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedents describe the TMS architecture and expert pipeline pattern, but a getting-started guide with specific CLI commands (reasons init, --sl flags, retract) requires knowledge of the tool's interface that is not contained in either antecedent."
+    },
+    {
+      "id": "hybrid-tms",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "ftl-reasons-is-tms establishes the symbolic TMS substrate and llm-as-problem-solver establishes the LLM integration \u2014 characterizing this combination as a 'hybrid TMS' with symbolic structure and LLM semantics is a sound synthesis of both antecedents."
+    },
+    {
+      "id": "llm-as-problem-solver",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedent establishes that Doyle designed TMS with an exogenous, content-agnostic problem-solver slot \u2014 the conclusion that filling this slot with an LLM is architecturally faithful (and the open question is competence, not legitimacy) follows soundly from the design's intentional openness."
+    },
+    {
+      "id": "model-stacking",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Multi-model stacking (Model A \u2192 Model B with provenance handoff) is a significant extension beyond what the antecedents describe \u2014 a single-system hybrid architecture and a single derive-then-review cycle."
+    },
+    {
+      "id": "multi-agent-beliefs",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The specific import-agent mechanism with an agent:active sentinel node is implementation detail not derivable from the general Doyle-style TMS architecture description."
+    },
+    {
+      "id": "nogood-mechanism",
+      "valid": true,
+      "sufficient": true,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "agm-belief-revision"
+      ],
+      "comment": "The nogood mechanism and dependency-directed backtracking follow from ftl-reasons-is-tms alone; AGM provides theoretical grounding for entrenchment but is not required for the mechanical description."
+    },
+    {
+      "id": "reasons-for-maintenance-beliefs-for-queries",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedent recommends distinct use cases for each CLI (beliefs for independent facts, reasons for dependency chains); the claim collapses beliefs.md to merely an export format, which is a different and unsupported architectural recommendation."
+    },
+    {
+      "id": "restoration",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Automatic restoration follows directly from the declarative semantics of SL justifications \u2014 if all antecedents return to IN, the dependent is IN again by definition."
+    },
+    {
+      "id": "retraction-cascade",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Transitive cascading is a direct consequence of SL semantics where ALL antecedents must be IN \u2014 one going OUT invalidates the justification, and the rule applies recursively."
+    },
+    {
+      "id": "scale-evidence",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Specific scale numbers (237 to 12,731 beliefs, 40+ KBs) are empirical claims that cannot be derived from the general claim that EEM works."
+    },
+    {
+      "id": "self-improvement",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Antecedents support self-correction (derive then review catches errors at 13-37% retraction rate), but 'exponential compounding' \u2014 each improvement improving the ability to find the next \u2014 is a significant unsupported leap."
+    },
+    {
+      "id": "sl-justification",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Correctly unpacks the standard definition of SL (Support List) justification from Doyle's TMS, which the antecedent explicitly states is implemented."
+    },
+    {
+      "id": "stale-belief-problem",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The antecedent describes EEM's epistemic properties (justified beliefs, truth values) but never mentions source material or the possibility of external sources changing under beliefs."
+    },
+    {
+      "id": "staleness-addresses-frame-problem",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Valid synthesis: frame-problem provides the theoretical context and staleness-detection provides the hash-comparison mechanism; the claim correctly characterizes check-stale as detecting what changed rather than tracking what persisted."
+    },
+    {
+      "id": "staleness-detection",
+      "valid": false,
+      "sufficient": false,
+      "necessary": false,
+      "unnecessary_antecedents": [
+        "eem-external"
+      ],
+      "comment": "Specific implementation details (SHA-256 hashing, source path recording at creation time) are not derivable from the antecedents, and eem-external (externality of storage) is not load-bearing for the staleness mechanism."
+    },
+    {
+      "id": "staleness-workflow",
+      "valid": true,
+      "sufficient": true,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "Valid synthesis combining staleness-detection (find stale beliefs) with retraction-cascade (propagate corrections to dependents) into a coherent operational workflow."
+    },
+    {
+      "id": "wide-not-deep",
+      "valid": false,
+      "sufficient": false,
+      "necessary": true,
+      "unnecessary_antecedents": [],
+      "comment": "The depth-8 ceiling and 'wide not deep' characterization are supported (and partly verbatim from the antecedent), but 'experiments reset derivation depth by providing new depth-0 observations' introduces methodology not present in the evidence."
+    }
+  ]
+}
