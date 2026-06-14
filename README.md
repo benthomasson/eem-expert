@@ -81,6 +81,24 @@ Any LLM agent that can call `reasons search`, `reasons show`, and `reasons expla
 | `confidence-unreliable` | LLM self-assessed confidence does not track accuracy (r=-0.182 to r=0.219) |
 | `ftl-reasons-is-tms` | ftl-reasons implements Doyle-style TMS with LLMs as problem solvers |
 
+## Evidence
+
+All performance claims are backed by methodology writeups and raw data in this repository:
+
+| Claim | Evidence | Data |
+|-------|----------|------|
+| 98.5% A/B across 3,853 questions | [evidence/full-scale-validation-3853-questions.md](evidence/full-scale-validation-3853-questions.md) | — |
+| 88% vs 33% expert-vs-baseline | [evidence/three-way-eval-88-vs-33.md](evidence/three-way-eval-88-vs-33.md) | — |
+| 0.53x cost, +12.7pp recall | [evidence/eem-vs-scratch-eval.md](evidence/eem-vs-scratch-eval.md) | — |
+| Beliefs +12-14pp on architectural Qs | [evidence/architectural-ablation-results.md](evidence/architectural-ablation-results.md) | [questions](data/architectural-ablation-questions.json), [analysis](data/architectural-ablation-analysis.json) |
+| Confidence unreliable (r=0.14-0.28) | [evidence/confidence-experiment-results.md](evidence/confidence-experiment-results.md) | [analysis](data/confidence-analysis.json), [harness](data/confidence-run-experiment.py) |
+| 92% premise precision | [evidence/propose-beliefs-accuracy-phase2.md](evidence/propose-beliefs-accuracy-phase2.md) | — |
+| +26pp novel inference | [evidence/continuity-experiment-results.md](evidence/continuity-experiment-results.md) | — |
+
+See [evidence/README.md](evidence/README.md) for the full claim-to-evidence map and [data/README.md](data/README.md) for raw data files.
+
+Additional evaluation infrastructure (question sets, scoring code, eval harness, raw results) is publicly available in [expert-service/eval/](https://github.com/benthomasson/expert-service/tree/main/eval).
+
 ## Sources
 
 Built from exploration of [benthomasson/ftl-reasons](https://github.com/benthomasson/ftl-reasons) and empirical studies across 40+ expert knowledge bases ranging from 237 to 12,731 beliefs.
@@ -110,7 +128,7 @@ Built from exploration of [benthomasson/ftl-reasons](https://github.com/benthoma
 
 ## Authors
 
-- Ben Thomasson ([@benthomasson](https://github.com/benthomasson))
+- **Ben Thomasson** ([@benthomasson](https://github.com/benthomasson)) — Principal Software Engineer, Red Hat. Research on external epistemic memory for LLM agents.
 
 ## License
 

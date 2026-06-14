@@ -1,0 +1,291 @@
+{
+  "metadata": {
+    "source": "agents-python-expert DERIVED beliefs",
+    "domain": "agents-python (Red Hat Agents Python)",
+    "total": 20,
+    "type": "multiple_choice",
+    "design_notes": "Architectural questions that test reasoning about design trade-offs, cross-module interactions, and system-level properties. Answers exist in DERIVED beliefs but require reading multiple files and synthesizing judgment from code. Designed to test H5: beliefs help more on architectural questions than factual ones."
+  },
+  "questions": [
+    {
+      "id": "AQ1",
+      "text": "What is the primary architectural weakness of the capability registry?",
+      "choices": {
+        "a": "It has no persistence layer — capabilities are lost on restart",
+        "b": "It depends on global ID uniqueness but uses last-write-wins semantics with no collision detection",
+        "c": "It cannot handle more than 100 registered capabilities",
+        "d": "It requires manual ordering of capability registration"
+      },
+      "correct": "b",
+      "category": "architectural_judgment",
+      "answerable_from": "beliefs",
+      "grounding_belief": "capability-registry-is-fragile"
+    },
+    {
+      "id": "AQ2",
+      "text": "How would you characterize the planner's design trade-off?",
+      "choices": {
+        "a": "Fast but inaccurate — it sacrifices routing quality for speed",
+        "b": "Safe but architecturally wasteful — it explores within bounds but over-selects capabilities",
+        "c": "Accurate but slow — it does exhaustive search at the cost of latency",
+        "d": "Simple but inflexible — it uses hard-coded rules instead of LLM-based routing"
+      },
+      "correct": "b",
+      "category": "architectural_judgment",
+      "answerable_from": "beliefs",
+      "grounding_belief": "planner-is-safe-but-architecturally-wasteful"
+    },
+    {
+      "id": "AQ3",
+      "text": "What asymmetric safety strategy does the citation subsystem use?",
+      "choices": {
+        "a": "Strict validation at construction, lenient at output",
+        "b": "Permissive at construction (validation deferred to format time), defensive at extraction (strategies never raise, deduplication)",
+        "c": "No validation at any stage — relies entirely on Guardian",
+        "d": "Identical validation at both construction and extraction"
+      },
+      "correct": "b",
+      "category": "cross_module",
+      "answerable_from": "beliefs",
+      "grounding_belief": "citation-is-permissive-at-construction-defensive-at-extraction"
+    },
+    {
+      "id": "AQ4",
+      "text": "How does the system enforce data correctness across the pipeline?",
+      "choices": {
+        "a": "Through runtime assertions and contract tests",
+        "b": "Through database transactions and rollback",
+        "c": "Through pervasive immutability — frozen citations, immutable department trees, write-once pipeline state",
+        "d": "Through input validation at the API boundary only"
+      },
+      "correct": "c",
+      "category": "system_property",
+      "answerable_from": "beliefs",
+      "grounding_belief": "immutability-enforces-data-correctness"
+    },
+    {
+      "id": "AQ5",
+      "text": "What is the error handling philosophy gradient across the system?",
+      "choices": {
+        "a": "All errors are logged and swallowed — the system never crashes",
+        "b": "All errors are raised — fail-fast everywhere",
+        "c": "Fail-hard for infrastructure, fail-soft for individual records, fail-open for service unavailability, fail-closed for ambiguous security",
+        "d": "Errors are retried three times then raised to the caller"
+      },
+      "correct": "c",
+      "category": "system_property",
+      "answerable_from": "beliefs",
+      "grounding_belief": "error-handling-philosophy-is-coherent"
+    },
+    {
+      "id": "AQ6",
+      "text": "How do trust enforcement mechanisms differ between the planner and Guardian?",
+      "choices": {
+        "a": "They are redundant — both do the same trust checks at different times",
+        "b": "Planner enforces structural trust hierarchy at routing time (departments > dataverse > external tools); Guardian enforces empirical trust at output time via asymmetric error policy",
+        "c": "Planner trusts all sources equally; Guardian is the only trust mechanism",
+        "d": "Guardian handles routing trust; planner handles output validation"
+      },
+      "correct": "b",
+      "category": "cross_module",
+      "answerable_from": "beliefs",
+      "grounding_belief": "guardian-and-planner-enforce-trust-at-different-layers"
+    },
+    {
+      "id": "AQ7",
+      "text": "What is the remaining efficiency improvement frontier for the system?",
+      "choices": {
+        "a": "Database query optimization — slow queries dominate latency",
+        "b": "Model selection — using smaller models would reduce cost",
+        "c": "Trust-cost amplification — planner waste invisibly amplifies the cost of trust enforcement (Guardian, citations)",
+        "d": "Network latency — API calls to external services dominate"
+      },
+      "correct": "c",
+      "category": "architectural_judgment",
+      "answerable_from": "beliefs",
+      "grounding_belief": "efficiency-frontier-is-trust-cost-amplification"
+    },
+    {
+      "id": "AQ8",
+      "text": "Why can't the evaluation framework detect computational waste from over-exploration?",
+      "choices": {
+        "a": "Evaluation only runs in test mode which skips the planner",
+        "b": "Eval scoring rewards correct department selection without penalizing unnecessary selections, and irrevocable forward-chaining means waste occurs silently after routing",
+        "c": "The evaluation framework doesn't have access to timing data",
+        "d": "Waste is not a concern because the system is already optimized"
+      },
+      "correct": "b",
+      "category": "architectural_judgment",
+      "answerable_from": "beliefs",
+      "grounding_belief": "evaluation-measures-routing-not-waste"
+    },
+    {
+      "id": "AQ9",
+      "text": "What two independent correctness layers protect citations from extraction through output?",
+      "choices": {
+        "a": "Input validation and output sanitization",
+        "b": "Citation pipeline defense-in-depth (defensive extraction, immutable types, synthesis preservation) AND Guardian validation (comprehensive checks, asymmetric error policy)",
+        "c": "Schema validation and runtime type checking",
+        "d": "Unit tests and integration tests"
+      },
+      "correct": "b",
+      "category": "cross_module",
+      "answerable_from": "beliefs",
+      "grounding_belief": "citation-correctness-from-extraction-through-guardian"
+    },
+    {
+      "id": "AQ10",
+      "text": "How does the DI/config architectural backbone enable both quality infrastructure and trust enforcement?",
+      "choices": {
+        "a": "By using environment variables for all configuration",
+        "b": "By providing factory seams for test doubles (hermetic environments) and multi-mechanism trust enforcement (immutability, Guardian, planner hierarchy)",
+        "c": "By using a centralized configuration database",
+        "d": "By enforcing strict typing across all interfaces"
+      },
+      "correct": "b",
+      "category": "design_rationale",
+      "answerable_from": "beliefs",
+      "grounding_belief": "architectural-backbone-enables-quality-and-trust"
+    },
+    {
+      "id": "AQ11",
+      "text": "What is the MCP subsystem's architectural limitation despite being well-designed?",
+      "choices": {
+        "a": "It only supports HTTP transport, not WebSocket",
+        "b": "It is architecturally sound (layered transport, fault-tolerant client) but has an inherent performance ceiling from N+1 sequential enrichment during discovery",
+        "c": "It cannot handle more than 10 concurrent connections",
+        "d": "It requires a dedicated MCP server per department"
+      },
+      "correct": "b",
+      "category": "architectural_judgment",
+      "answerable_from": "beliefs",
+      "grounding_belief": "mcp-is-sound-but-has-performance-ceiling"
+    },
+    {
+      "id": "AQ12",
+      "text": "How does Guardian's error policy differ between data errors and API errors?",
+      "choices": {
+        "a": "Both use the same retry-then-fail policy",
+        "b": "Fail-closed for missing data and ambiguous parsing (conservative), fail-open for API/service errors (availability)",
+        "c": "Fail-open for everything — availability is always prioritized",
+        "d": "Data errors are retried; API errors are logged and ignored"
+      },
+      "correct": "b",
+      "category": "design_rationale",
+      "answerable_from": "beliefs",
+      "grounding_belief": "guardian-error-policy-is-asymmetric"
+    },
+    {
+      "id": "AQ13",
+      "text": "What pattern does the system use for dependency injection across its major components?",
+      "choices": {
+        "a": "A DI container (like Java Spring) manages all dependencies",
+        "b": "Factory-based injection: centralized Model.from_config(), constructor-injected execute_fn, factory-created LangGraph nodes, callback-injected planner delegation",
+        "c": "Service locator pattern with a global registry",
+        "d": "All dependencies are hard-coded — no injection is used"
+      },
+      "correct": "b",
+      "category": "system_property",
+      "answerable_from": "beliefs",
+      "grounding_belief": "dependency-injection-is-systemic"
+    },
+    {
+      "id": "AQ14",
+      "text": "What makes the evaluation framework's quality assessment incomplete?",
+      "choices": {
+        "a": "It only tests the planner, not the executor or synthesizer",
+        "b": "Planner routing quality is measurable across four dimensions, but the broader framework has latent fragility from LangFlow removal and incomplete iteration support",
+        "c": "It requires manual scoring — no automated evaluation exists",
+        "d": "It only works with Gemini models, not Claude"
+      },
+      "correct": "b",
+      "category": "architectural_judgment",
+      "answerable_from": "beliefs",
+      "grounding_belief": "evaluation-capability-is-uneven"
+    },
+    {
+      "id": "AQ15",
+      "text": "How does the system ensure concurrent access safety across process boundaries and in-memory caches?",
+      "choices": {
+        "a": "It uses database-level locks for all shared state",
+        "b": "Cross-process auth uses fcntl file locking, Dataverse token refresh uses double-checked asyncio.Lock, eval scoring uses thread-safe caches with Event sentinels",
+        "c": "It avoids concurrency entirely — all operations are sequential",
+        "d": "It uses Redis distributed locks for coordination"
+      },
+      "correct": "b",
+      "category": "cross_module",
+      "answerable_from": "beliefs",
+      "grounding_belief": "concurrency-safely-managed"
+    },
+    {
+      "id": "AQ16",
+      "text": "What is the configuration cascade pattern used across the planner and synthesizer?",
+      "choices": {
+        "a": "Environment variables override config files override defaults",
+        "b": "State-over-config-over-default: runtime state overrides configuration, which overrides defaults — applied identically in both subsystems",
+        "c": "Configuration is loaded once at startup and never changes",
+        "d": "Each subsystem has its own independent configuration with no shared pattern"
+      },
+      "correct": "b",
+      "category": "system_property",
+      "answerable_from": "beliefs",
+      "grounding_belief": "config-cascade-is-systemic"
+    },
+    {
+      "id": "AQ17",
+      "text": "How does the Drive subsystem achieve security across read, write, and storage operations?",
+      "choices": {
+        "a": "All operations go through a single authenticated proxy",
+        "b": "Read traversal is bounded (depth limits, cycle detection, department isolation); writes are triple-guarded (scope gates, upsert semantics, re-auth); storage uses defensive error absorption with exponential backoff",
+        "c": "OAuth tokens are validated on every API call",
+        "d": "Read-only mode is enforced — writes are not supported"
+      },
+      "correct": "b",
+      "category": "cross_module",
+      "answerable_from": "beliefs",
+      "grounding_belief": "drive-is-secure-across-all-operations"
+    },
+    {
+      "id": "AQ18",
+      "text": "How does department tree structure emerge at runtime?",
+      "choices": {
+        "a": "From a hierarchy database table loaded at startup",
+        "b": "From explicit parent_id fields in each department config",
+        "c": "From dot-delimited ID strings — hierarchy is computed from IDs with conditional self-registration, not stored",
+        "d": "From a hierarchy.yaml file that maps parent-child relationships"
+      },
+      "correct": "c",
+      "category": "design_rationale",
+      "answerable_from": "beliefs",
+      "grounding_belief": "department-tree-is-runtime-derived"
+    },
+    {
+      "id": "AQ19",
+      "text": "What makes the full query lifecycle structurally sound from planning through citation output?",
+      "choices": {
+        "a": "Comprehensive unit test coverage validates every path",
+        "b": "Planning produces validated, budget-constrained capability selections that execute correctly under concurrency, and citations maintain semantic integrity from extraction through final formatting",
+        "c": "A single transaction wraps the entire query lifecycle",
+        "d": "Runtime assertions check invariants at every pipeline stage"
+      },
+      "correct": "b",
+      "category": "system_property",
+      "answerable_from": "beliefs",
+      "grounding_belief": "full-query-lifecycle-is-structurally-sound"
+    },
+    {
+      "id": "AQ20",
+      "text": "Why does the pipeline startup avoid heavy initialization?",
+      "choices": {
+        "a": "To reduce memory usage for serverless deployment",
+        "b": "Nodes use lazy imports, Department.execute delegates to MCP (not implemented locally), and the pipeline is code-defined not JSON-parsed",
+        "c": "The pipeline is precompiled and cached between requests",
+        "d": "All initialization is deferred to a background thread"
+      },
+      "correct": "b",
+      "category": "design_rationale",
+      "answerable_from": "beliefs",
+      "grounding_belief": "langgraph-startup-is-lightweight"
+    }
+  ]
+}
