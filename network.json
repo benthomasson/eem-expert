@@ -1,4 +1,12 @@
 {
+  "meta": {
+    "schema_version": "1.0",
+    "project_name": "reasons",
+    "created_at": "2026-05-28T14:50:55+00:00",
+    "updated_at": "2026-06-14T11:46:46+00:00",
+    "node_count": 103,
+    "generator": "ftl-reasons/0.46.0"
+  },
   "nodes": {
     "agm-belief-revision": {
       "text": "AGM (Alchourr\u00f3n, G\u00e4rdenfors, Makinson 1985) provides formal theory for rational belief revision. Entrenchment scoring in backtracking is a crude approximation of AGM",
@@ -10,11 +18,99 @@
       "date": "",
       "metadata": {}
     },
+    "amortization-argument": {
+      "text": "EEM construction is expensive but amortizes. ~$300 Sonnet for 13,511 beliefs. Each query costs ~$0.01. Breakeven at 100-250 queries. After that, every query is cheaper than re-reading source documents from scratch.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "construction-cost-measured",
+            "construction-vs-retrieval"
+          ],
+          "outlist": [],
+          "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "construction-cost-measured",
+            "construction-vs-retrieval",
+            "training-finetuning-cost-comparison"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:beliefs-pi/entries/2026/05/27/eem-construction-cost-estimate-enterprise-scale.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "invalid"
+      }
+    },
     "atms-de-kleer-1986": {
       "text": "de Kleer (1986) ATMS uses assumption-based environments and nogoods. TMS beats ATMS for EEM because revision matters more than multiple environments when the problem solver (LLM) produces 13-37% errors",
       "truth_value": "IN",
       "justifications": [],
       "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "automated-overnight-construction": {
+      "text": "The derive-review-research cycle is mechanical enough to run unattended. Three of six substrate validations were run by an autonomous Claude session with no human intervention, producing consistent results. The target: kick off expert-build derive-review-repair in the evening, wake up to a reviewed knowledge base. Learn while you sleep, build while you're awake.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "six-domain-validation",
+            "construction-cost-measured",
+            "derive-overshoot-observed"
+          ],
+          "outlist": [],
+          "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "six-domain-validation",
+            "construction-cost-measured",
+            "derive-overshoot-observed",
+            "automation-evidence"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:beliefs-pi/entries/2026/05/29/learn-while-you-sleep-automated-eem-construction.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "invalid"
+      }
+    },
+    "automation-evidence": {
+      "text": "Three of six substrate derive-review-research cycles (bare-metal, AWS, OpenShift) were run by an autonomous Claude session with no human intervention. Results were consistent with manually-run cycles: same four failure categories, same proportional breakdown, same repair strategies. The process is mechanical enough for a single LLM session to execute the full loop.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/29/six-substrate-cross-domain-summary.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "belief-registry-externalizes-critique": {
+      "text": "The belief registry externalizes and persists the critic's judgments. Instead of relying on the same LLM to both generate and evaluate (which fails \u2014 self-critique damages accuracy -3pp to -41.5pp), the registry stores review outcomes as truth values (IN/OUT), retraction records, and nogoods. The critic's work survives across sessions and is available to any model.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/06/generate-and-critique-llms-are-half-a-mind.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -41,13 +137,25 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "ftl-reasons-is-tms",
+            "ftl-reasons-implementation"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "unnecessary"
+      }
     },
     "cognitive-budget": {
       "text": "Cognitive budget principle borrowed from graphics frame budgets: decompose work into focused passes (TMS pass, RAG pass, merge pass) each within the model's attention budget. Mixing beliefs and document chunks in a single prompt degrades performance (Opus drops 95.5% to 86%); three focused passes achieve 100%",
@@ -59,11 +167,31 @@
       "date": "",
       "metadata": {}
     },
+    "compaction-destroys-networks": {
+      "text": "Context compaction destroys justification networks. Quantified across 33 measured compaction events in beliefs-pi. Justification chains, dependency structures, and correction history are lost when the context window is compressed.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/04/03/",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "confidence-unreliable": {
-      "text": "LLM self-assessed confidence does not track accuracy. Confirmed across 4 models: Sonnet r=0.198, Opus r=-0.182 (worse than random), Flash r=0.219, Pro r=0.121. Answer and confidence come from the same process \u2014 same structural flaw as human overconfidence (Kahneman)",
+      "text": "LLM self-assessed confidence does not reliably track accuracy. Confirmed across 4 models (corrected results): Opus r=0.280, Sonnet r=0.223, Flash r=0.267, Pro r=0.137. Confidence explains only 2-8% of variance. Revision based on self-assessment damages accuracy in all 4 models (-3pp to -41.5pp). Same structural flaw as human overconfidence (Kahneman) \u2014 answer and confidence come from the same process.",
       "truth_value": "IN",
       "justifications": [],
       "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "construction-cost-measured": {
+      "text": "EEM construction cost measured for enterprise scale (6 departments, 5,366 sources, 13,511 beliefs): ~$300 at Sonnet pricing, ~$1,500 at Opus pricing. Dominant cost is the summarize step (~98M tokens). Per-query breakeven at 100-250 queries \u2014 after that, every query is cheaper than re-reading source documents.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/27/eem-construction-cost-estimate-enterprise-scale.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -79,8 +207,18 @@
       "date": "",
       "metadata": {}
     },
+    "context-opacity": {
+      "text": "The human cannot track what the LLM currently has in context. Context windows are opaque \u2014 the human sees their messages and tool results but not the model's internal state, compaction decisions, or what was silently dropped.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "continuity-human-problem": {
-      "text": "The human cannot track what the LLM currently has in context. EEM solves this via visibility and persistence \u2014 the human can always inspect the current belief state. Short compaction cycles are better than large context windows",
+      "text": "The human cannot track what the LLM currently has in context. Context windows are opaque and compaction destroys justification networks. EEM solves this via visibility and persistence \u2014 the human can always inspect the current belief state regardless of what the model has in context.",
       "truth_value": "IN",
       "justifications": [
         {
@@ -90,9 +228,72 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "eem-external",
+            "context-opacity",
+            "compaction-destroys-networks"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "invalid"
+      }
+    },
+    "credibility-is-presentation-problem": {
+      "text": "The credibility gap on llmeem.ai is a presentation problem, not a substance problem. The evidence (eval harnesses, question sets, raw results, methodology writeups) exists but is not linked or publicly accessible. Fixing credibility requires linking to existing evidence, not generating new evidence.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "evidence-exists-but-not-linked",
+            "self-referential-evidence"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "Claude review of llmeem.ai, 2026-06-14",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "cross-model-portability": {
+      "text": "EEM works across model providers and sizes. The same belief network can be queried by Claude, Gemini, local models, or any LLM that can read text. Model upgrades, provider swaps, and cost optimization (Opus\u2192Haiku) preserve all knowledge. The beliefs are plain text with structure \u2014 no model-specific format.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "depth-reset-methodology": {
+      "text": "Experiments reset derivation depth by providing new depth-0 observations. When derive saturates at depth 7-8, adding new premises from fresh source analysis provides new combinable pairs, restarting the derivation process from depth 1.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "derive-overshoot-observed": {
+      "text": "Derive over-generates (produces beliefs that don't survive review) and review over-retracts (flags beliefs that could be recovered). Measured: 13-38% retraction rate across 6 infrastructure domains (939 derivations). Working through candidate retractions reveals insights \u2014 smuggled premises are usually recoverable (44-59% search-and-link recovery rate).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/29/six-substrate-cross-domain-summary.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -109,13 +310,25 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "hybrid-tms",
+            "derive-overshoot-observed"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "pass"
+      }
     },
     "dual-path-architecture": {
       "text": "Dual-path retrieval: TMS path (pre-computed beliefs) + FTS path (source chunk search), merged by a third pass. This is how EEM is queried at scale. Each path stays within cognitive budget",
@@ -128,9 +341,41 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "cognitive-budget",
+            "dual-path-design-evidence"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "pass"
+      }
+    },
+    "dual-path-design-evidence": {
+      "text": "Dual-path retrieval (TMS path for pre-computed beliefs + FTS path for source chunk search, merged by a third pass) achieves 98.5% A/B across 3,853 questions. Opus drops from 95.5% to 86% when mixing beliefs and document chunks in a single prompt; three focused passes achieve 100%.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/02/full-scale-validation-3853-questions-dual-path-985-percent.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "eem-cli-interface": {
+      "text": "The reasons CLI provides: reasons init (create database), reasons add (add beliefs with --sl for justifications, --source for provenance), reasons retract (mark OUT with cascade), reasons assert (mark IN with restoration), reasons search (semantic search), reasons show (full details), reasons explain (justification trace), reasons derive (generate new beliefs), reasons review-beliefs (audit), reasons challenge/defend (dialectical argumentation), reasons check-stale (source change detection), reasons nogood (record contradictions), reasons export-markdown (beliefs.md output), reasons compact (token-budgeted summary).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:ftl-reasons/reasons_lib/cli.py",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -154,7 +399,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "unnecessary"
+      }
     },
     "eem-definition": {
       "text": "External Epistemic Memory (EEM) is knowledge that lives outside the model, carries its justifications with it, and lets you understand how the system knows what it knows",
@@ -177,7 +425,7 @@
       "metadata": {}
     },
     "eem-external": {
-      "text": "External means outside model parameters, in a separate substrate. Survives compaction, model swaps, session boundaries. Inspectable, editable, auditable, shareable across models",
+      "text": "External means outside model parameters, in a separate substrate. Survives compaction, model swaps, session boundaries. Six properties: separable (exists independently of the model), copyable (can be duplicated), shareable (multiple agents can access it), inspectable (humans can read it), editable (humans can modify it), auditable (justification chains are traversable).",
       "truth_value": "IN",
       "justifications": [],
       "source": "repo:beliefs-pi/CLAUDE.md",
@@ -214,7 +462,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "pass"
+      }
     },
     "eem-three-properties": {
       "text": "EEM is defined by three load-bearing properties: external (outside parameters), epistemic (justified with truth values), and memory (persistent semantic knowledge)",
@@ -235,7 +486,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "pass"
+      }
     },
     "eem-vs-context": {
       "text": "Conversation history and context windows are ephemeral \u2014 lost at session boundaries, destroyed by compaction. EEM persists across sessions and model swaps. Context compaction destroys justification networks (quantified across 33 measured compaction events)",
@@ -248,16 +502,51 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "eem-external",
+            "compaction-destroys-networks"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "pass"
+      }
+    },
+    "eem-vs-knowledge-graphs": {
+      "text": "Knowledge graphs store entities and relationships (what exists). EEM stores justified beliefs (what is believed and why). Knowledge graphs have no retraction cascades, no derivation depth, no contradiction tracking. When a fact is wrong, the graph doesn't know what else depends on it. EEM does. Every ontology is an implicit epistemology \u2014 it treats beliefs as facts, which works until they're wrong.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "ontology-vs-epistemology",
+            "eem-epistemic"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:beliefs-pi/entries/2026/05/27/",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "pass"
+      }
     },
     "eem-vs-parametric": {
-      "text": "In-parameter knowledge has no audit trail. EEM makes 'how do you know that?' answerable by justification chain traversal. Of the six externality properties (separable, copyable, shareable, inspectable, editable, auditable), auditability is the most epistemically important",
+      "text": "In-parameter knowledge has no audit trail. EEM makes 'how do you know that?' answerable by justification chain traversal. EEM's externality provides six properties: separable, copyable, shareable, inspectable, editable, auditable. Auditability is what distinguishes EEM from other external stores \u2014 it is the epistemic property.",
       "truth_value": "IN",
       "justifications": [
         {
@@ -274,7 +563,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "invalid"
+      }
     },
     "eem-vs-rag": {
       "text": "RAG is external semantic memory but not epistemic. It retrieves content by similarity but has no justification chains, truth values, retraction cascades, or contradiction tracking. EEM adds the epistemic layer that RAG lacks",
@@ -293,7 +585,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "pass"
+      }
     },
     "eem-works": {
       "text": "EEM measurably and dramatically improves LLM performance on domain tasks. The core research question is answered: yes",
@@ -311,6 +606,29 @@
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "unnecessary"
+      }
+    },
+    "epistemic-honesty": {
+      "text": "An epistemically honest EEM should distinguish between what it can demonstrate (structural consistency, self-correction, provenance tracking) and what it cannot demonstrate without external validation (absolute accuracy of numeric claims, generalizability to other implementations, superiority over alternatives). The TMS makes this distinction tractable by separating premises from derivations",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "structure-not-truth",
+            "premises-are-trust-boundaries"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:eem-expert/CLAUDE.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -346,6 +664,16 @@
       "date": "",
       "metadata": {}
     },
+    "evidence-exists-but-not-linked": {
+      "text": "The eval harnesses, question sets, JSON result files, Langfuse traces, and methodology writeups all exist in project repos (beliefs-pi, expert-service, claude_code_langgraph). They are not public or linked from llmeem.ai. The credibility gap is a presentation problem, not a substance problem.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "Claude review of llmeem.ai, 2026-06-14",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "evidence-expert-vs-baseline": {
       "text": "Expert-service with EEM scores 88% A-grade vs agents-python 33% on same 50 questions, 15x faster",
       "truth_value": "IN",
@@ -376,6 +704,16 @@
       "date": "",
       "metadata": {}
     },
+    "expert-agent-builder-repo": {
+      "text": "expert-agent-builder automates the knowledge pipeline: fetch docs \u2192 generate entries \u2192 extract beliefs \u2192 derive \u2192 review. Install: pip install expert-agent-builder or uv tool install expert-agent-builder. Source and issues: https://github.com/benthomasson/expert-agent-builder",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "https://github.com/benthomasson/expert-agent-builder",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
     "expert-pipeline": {
       "text": "Expert pipeline: chunk source material \u2192 propose beliefs \u2192 human accepts \u2192 derive connections \u2192 review derivations \u2192 export. Value accrues at each stage, with derive producing new knowledge (connections the source doesn't make explicit)",
       "truth_value": "IN",
@@ -388,9 +726,32 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "hybrid-tms",
+            "derive-then-review",
+            "expert-pipeline-design"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/entries/2026/05/06/knowledge-as-a-service-kaas.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "unnecessary"
+      }
+    },
+    "expert-pipeline-design": {
+      "text": "The expert-build pipeline implements: fetch-docs (source \u2192 markdown), summarize (entries from sources), propose-beliefs (extract candidates), accept-beliefs (human gate), derive (find connections), review-beliefs (audit derivations), export (beliefs.md/JSON). Value accrues at each stage \u2014 derive produces new knowledge that no single source document states.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:expert-agent-builder/",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -413,6 +774,29 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "pass"
+      }
+    },
+    "fabricated-specificity-rate-8-percent": {
+      "text": "8% of premises contain fabricated details the source never mentioned (propose-beliefs Phase 2 experiment, 100 randomly sampled premises from handbook-expert). Dominant error type is embellishment, not contradiction \u2014 the proposer adds plausible but unsupported specifics (e.g., Redis when source says nothing about storage backend).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/06/09/propose-beliefs-accuracy-phase2-results.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "four-failure-categories": {
+      "text": "LLM derivation produces exactly four categories of error, validated across 6 infrastructure domains (939 derivations, 219 invalid): smuggled premises (41-54% of invalids \u2014 facts from parametric knowledge not cited in antecedents), false causal links (20-26% \u2014 independent capabilities asserted as integrated), unsupported superlatives (8-24% \u2014 strength claims overstating sources), domain conflation (13-15% \u2014 properties of one system applied to another). No new category has appeared. The taxonomy is complete.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/29/six-substrate-cross-domain-summary.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
       "metadata": {}
     },
     "frame-problem": {
@@ -420,6 +804,26 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ftl-reasons-implementation": {
+      "text": "ftl-reasons implements: SL justifications with antecedents and outlists, BFS propagation cascades with restoration, entrenchment-scored dependency-directed backtracking, challenge/defend dialectical argumentation (challenge\u2192OUT, defend neutralizes, multi-level chains), LLM-driven derive, review-beliefs, and contradiction detection. SQLite-backed, Python CLI.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:ftl-reasons/reasons_lib/",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "ftl-reasons-install": {
+      "text": "ftl-reasons installs via pip or uv. Three options: (1) pip install ftl-reasons, (2) uv tool install ftl-reasons, (3) uvx ftl-reasons <command> to run without installing. Requires Python. Initialize a new database with: reasons init",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "https://github.com/benthomasson/ftl-reasons",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -436,9 +840,54 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "tms-doyle-1979",
+            "ftl-reasons-implementation"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "pass"
+      }
+    },
+    "ftl-reasons-quick-start": {
+      "text": "Quick start: (1) pip install ftl-reasons, (2) reasons init, (3) reasons add my-belief 'Text of the belief' --source 'where I learned this', (4) reasons add derived-belief 'Conclusion' --sl my-belief to create a justified derivation, (5) reasons retract my-belief to see cascades propagate, (6) reasons assert my-belief to see restoration, (7) reasons explain derived-belief to trace the justification chain.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "ftl-reasons-install",
+            "eem-cli-interface"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "https://github.com/benthomasson/ftl-reasons",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "invalid"
+      }
+    },
+    "ftl-reasons-repo": {
+      "text": "ftl-reasons source code and issue tracker: https://github.com/benthomasson/ftl-reasons \u2014 open source, 211 tests covering propagation, cascades, restoration, nogoods, backtracking, challenge/defend, import/export, staleness detection. Issues and feature requests go here.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "https://github.com/benthomasson/ftl-reasons",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -456,13 +905,37 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "confidence-unreliable",
+            "self-critique-harmful",
+            "llm-generation-capability"
+          ],
+          "outlist": [],
+          "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "confidence-unreliable",
+            "self-critique-harmful",
+            "llm-generation-capability",
+            "belief-registry-externalizes-critique"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/entries/2026/05/06/generate-and-critique-llms-are-half-a-mind.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "invalid"
+      }
     },
     "how-agents-use-eem": {
       "text": "LLM agents use EEM by: querying beliefs via search/show/explain before answering, citing node IDs for auditability, running derive to generate new beliefs from existing ones, running review-beliefs to self-audit, recording nogoods when contradictions appear. The agent does not need to be told it is an expert \u2014 the knowledge base speaks for itself",
@@ -476,13 +949,26 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "expert-prompt-paradox",
+            "hybrid-tms",
+            "eem-cli-interface"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "unnecessary"
+      }
     },
     "how-humans-use-eem": {
       "text": "Humans use EEM by: inspecting beliefs.md for current state, running reasons explain to understand why something is believed, challenging beliefs with reasons challenge, reviewing the network with reasons status, checking staleness with reasons check-stale. The key value is visibility \u2014 humans can see and audit what the system knows",
@@ -496,13 +982,26 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "eem-external",
+            "continuity-human-problem",
+            "eem-cli-interface"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "invalid"
+      }
     },
     "how-to-start": {
       "text": "To start using EEM: (1) reasons init \u2014 creates reasons.db, (2) add premises from observations with reasons add, (3) add justified conclusions with --sl to link dependencies, (4) use reasons derive to find connections, (5) use reasons review-beliefs to audit, (6) retract when evidence changes and let cascades propagate",
@@ -516,9 +1015,32 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "ftl-reasons-is-tms",
+            "expert-pipeline",
+            "eem-cli-interface"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "invalid"
+      }
+    },
+    "http-endpoint-access": {
+      "text": "EEM is accessible via a single HTTP GET at https://expert.ftl2.com/public/eem-expert/beliefs \u2014 no Python library, no CLI installation, no database copy, no setup. Three formats available: HTML (human-browsable), Markdown (agent-readable), JSON (machine-readable). Any agent that can fetch a URL can consume justified beliefs immediately.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/28/eem-over-http-no-code-agent-continuity.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -542,6 +1064,68 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "pass"
+      }
+    },
+    "import-agent-implementation": {
+      "text": "import-agent command imports another agent's beliefs with SL justifications including agent:active as antecedent. Node is IN iff agent is active AND original belief is justified. Implemented in ftl-reasons CLI.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:ftl-reasons/reasons_lib/cli.py",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "independent-validation": {
+      "text": "Karpathy's LLM Wiki (2026) independently arrived at the same diagnosis (RAG is stateless waste) and same general solution (persistent structured knowledge). EEM goes further with justification chains, retraction cascades, and controlled eval data. When independent researchers arrive at the same architecture from different starting points, the architecture is probably right.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "karpathy-llm-wiki",
+            "eem-works"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:beliefs-pi/entries/2026/05/27/karpathy-llm-wiki-validates-eem-core-insight.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "independent-verification-needed": {
+      "text": "Independent verification requires: public repos with eval harnesses and question sets, raw score data with confidence intervals, author identity and methodology, third-party replication on different domains. Without these, EEM's numeric claims are the author's reported results, not independently verified benchmarks",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "self-referential-evidence"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:eem-expert/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "karpathy-llm-wiki": {
+      "text": "Andrej Karpathy (2026) independently proposed an 'LLM Wiki' \u2014 a persistent structured knowledge base that an LLM incrementally builds and maintains instead of re-discovering knowledge from scratch. Same diagnosis (RAG is stateless waste), same general solution (persistent knowledge artifact). EEM goes further: justification chains, retraction cascades, measured results across 4 model families. Independent convergence from a credible source validates the core insight.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
       "metadata": {}
     },
     "llm-as-problem-solver": {
@@ -561,6 +1145,19 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "pass"
+      }
+    },
+    "llm-generation-capability": {
+      "text": "LLMs are strong generators: they produce fluent, contextually relevant, often correct text across domains. The 88% A-grade with EEM, 98.5% dual-path, and consistent ~155 derivations per 10-round cycle across 6 domains demonstrate generation capability. The problem is reliability, not capability \u2014 13-38% of derivations fail review.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/29/six-substrate-cross-domain-summary.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
       "metadata": {}
     },
     "model-stacking": {
@@ -575,8 +1172,31 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "hybrid-tms",
+            "derive-then-review",
+            "model-stacking-evidence"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
+      "source": "repo:beliefs-pi/entries/2026/05/06/model-stacking-tms-as-the-layer-between-models.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "invalid"
+      }
+    },
+    "model-stacking-evidence": {
+      "text": "Multi-pass agent pattern observed: Model A generates candidates, TMS records with provenance, review critiques (machine + human), Model B receives validated beliefs, Model B derives new beliefs. Demonstrated in expert-build pipeline where Sonnet summarizes sources, then Sonnet derives, then Sonnet reviews \u2014 each pass gets fresh context with the TMS as the persistent layer between passes.",
+      "truth_value": "IN",
+      "justifications": [],
       "source": "repo:beliefs-pi/entries/2026/05/06/model-stacking-tms-as-the-layer-between-models.md",
       "source_url": "",
       "source_hash": "",
@@ -594,9 +1214,41 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "ftl-reasons-is-tms",
+            "import-agent-implementation"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/entries/2026/03/28/import-agent-multi-agent-belief-tracking-for-cross-repo-knowledge.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "invalid"
+      }
+    },
+    "no-code-adoption": {
+      "text": "Three levels of EEM integration: (1) HTTP GET \u2014 just a URL, read beliefs as context, no installation. (2) CLI (ftl-reasons) \u2014 search, show, explain, pip install. (3) Full pipeline (expert-build) \u2014 build, derive, review, maintain. The HTTP level is the on-ramp: try EEM in 30 seconds, see if it helps, no commitment.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "http-endpoint-access",
+            "cross-model-portability"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:beliefs-pi/entries/2026/05/28/eem-over-http-no-code-agent-continuity.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -620,6 +1272,49 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "unnecessary"
+      }
+    },
+    "ontology-vs-epistemology": {
+      "text": "Every knowledge graph and ontology is an implicit epistemology that has forgotten it is one. Ontologies store entities and relationships (what exists) and treat beliefs as facts. EEM stores justified beliefs (what is believed and why). When a fact in a knowledge graph is wrong, the graph doesn't know what depends on it. EEM does \u2014 retraction cascades propagate corrections automatically through all dependents.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/27/",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "premises-are-trust-boundaries": {
+      "text": "Premises (nodes with no justifications) are the trust boundaries of the network. The TMS cannot validate them \u2014 they are accepted by fiat. Every derived belief inherits the epistemic status of its premises. If a premise is wrong, everything that depends on it is structurally valid but false",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "sl-justification",
+            "structure-not-truth"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:eem-expert/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "reasons-db-vs-beliefs-md": {
+      "text": "Architecture pattern in practice: reasons.db (SQLite) is the primary store for all structural operations \u2014 add, retract, derive, review, justify. beliefs.md is an export format for querying \u2014 fast, human-readable, grep-able, used as agent context. Both kept in sync via reasons export-markdown.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
       "metadata": {}
     },
     "reasons-for-maintenance-beliefs-for-queries": {
@@ -633,13 +1328,25 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "beliefs-cli-vs-reasons-cli",
+            "reasons-db-vs-beliefs-md"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/entries/2026/03/24/agents-python-expert-primary-store-migration-complete-and-deep-reasoning-chains.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "invalid"
+      }
     },
     "restoration": {
       "text": "When a retracted node comes back IN, dependents are recomputed \u2014 no manual rederivation needed. The TMS tracks structure so restoration is automatic",
@@ -658,7 +1365,10 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "pass"
+      }
     },
     "retraction-cascade": {
       "text": "When a node goes OUT, all dependents whose justifications become invalid also go OUT \u2014 automatically, transitively. This is the most important operation: retract one belief and the network figures out what else falls",
@@ -677,6 +1387,40 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "pass"
+      }
+    },
+    "review-catches-llm-errors": {
+      "text": "The review step catches the specific kinds of errors LLMs make during derivation. Four categories account for 100% of failures across 6 domains. Each maps to a repair strategy: smuggled premises \u2192 search-and-link (44-59% recoverable), superlatives \u2192 soften, false causal links \u2192 retract, domain conflation \u2192 retract. The 13-38% retraction rate validates that TMS review compensates for exactly the kind of errors LLMs produce.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "four-failure-categories",
+            "search-and-link-recovery",
+            "evidence-retraction-rate"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:beliefs-pi/entries/2026/05/29/six-substrate-cross-domain-summary.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "scale-data": {
+      "text": "40+ expert knowledge bases built across domains. Smallest: aap-expert (237 beliefs). Largest: redhat-expert (12,511 nodes across 6 departments/expert agents, 11,897 IN after repair). Domains include enterprise products, codebases, research papers, certification curricula, cloud infrastructure (AWS, GCP, Azure, OpenShift, bare-metal, Hetzner).",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
       "metadata": {}
     },
     "scale-evidence": {
@@ -690,9 +1434,31 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "eem-works",
+            "scale-data"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "invalid"
+      }
+    },
+    "search-and-link-recovery": {
+      "text": "44-59% of smuggled premises are recoverable via search-and-link: search the existing belief network for the smuggled fact, add it as a proper antecedent. The LLM isn't fabricating \u2014 it's laundering correct facts without citation. The repair is 'find and link' rather than 'delete and forget.' Retract-only workflows destroy value by discarding beliefs whose factual content is correct.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/28/search-and-link-repair-executed-on-bare-metal-expert.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -709,7 +1475,7 @@
       "metadata": {}
     },
     "self-improvement": {
-      "text": "The system finds problems in itself. Each improvement improves the system's ability to find the next improvement \u2014 exponential compounding vs linear improvement in static systems",
+      "text": "The system finds problems in itself. The derive-review cycle surfaces errors (13-38% retraction rate), and corrections cascade through the network, improving the foundation for the next derivation round. Each cycle builds on a cleaner network than the last.",
       "truth_value": "IN",
       "justifications": [
         {
@@ -723,6 +1489,59 @@
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "invalid"
+      }
+    },
+    "self-referential-evidence": {
+      "text": "The EEM evidence base is currently self-referential: all experimental results (98.5% dual-path, 88% vs 33% expert-vs-baseline, confidence r-values) are sourced from the same project's internal entries. The belief registry demonstrating itself on its own claims is circular \u2014 structure and provenance tracking work, but the underlying numbers lack independent verification",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:eem-expert/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "site-lacks-author-attribution": {
+      "text": "llmeem.ai has no author, affiliation, or credentials listed anywhere on the site. Visitors cannot determine who ran the experiments or what their qualifications are.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "Claude review of llmeem.ai, 2026-06-14",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "site-lacks-methodology-links": {
+      "text": "llmeem.ai presents headline numbers (98.5% A/B across 3,853 questions, 88% vs 33% expert-vs-baseline, confidence r-values) without links to methodology, question sets, scoring rubrics, or raw result data. The numbers appear as unverified marketing claims.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "Claude review of llmeem.ai, 2026-06-14",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "site-lacks-model-versions": {
+      "text": "llmeem.ai does not specify which model versions (Sonnet, Opus, Haiku version numbers) or dates experiments were run against. Model version matters significantly for reproducibility.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "Claude review of llmeem.ai, 2026-06-14",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "six-domain-validation": {
+      "text": "The derive-review-research workflow has been validated across 6 independent infrastructure domains: bare-metal (RHEL), AWS, OpenShift, GCP, Azure, Hetzner. 939 total derivations, 219 invalid (23%), same four failure categories in every domain, same three repair strategies (search-and-link, soften, retract), zero uncategorized failures. The workflow is domain-independent.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/29/six-substrate-cross-domain-summary.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -745,6 +1564,209 @@
       "source_url": "",
       "source_hash": "",
       "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "pass"
+      }
+    },
+    "source-change-problem": {
+      "text": "Beliefs derived from source material that has since changed may no longer be true. Source documents are updated, deprecated, or replaced over time. Without tracking which sources support which beliefs, the belief network silently diverges from reality.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "source-quality-determines-derivation": {
+      "text": "Source document quality is the primary determinant of derivation quality. Technical/operational documentation (procedures, configurations, specs) produces 13-31% invalid rates with mostly softenable errors. Marketing/strategy documentation (assertions without evidence) produces up to 70% invalid rates with destructive retractions. The derive-review pipeline functions as a document quality assay.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/29/tms-as-bullshit-detector-marketing-claims-dont-survive-review.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "stale-belief-problem": {
+      "text": "A belief derived from source material that has since changed may no longer be true. Without staleness detection, the belief network silently diverges from reality \u2014 it answers 'is this justified?' correctly for the old state but not the current one",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "eem-epistemic"
+          ],
+          "outlist": [],
+          "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "eem-epistemic",
+            "source-change-problem"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "invalid"
+      }
+    },
+    "staleness-addresses-frame-problem": {
+      "text": "check-stale is EEM's answer to the frame problem: instead of tracking everything that didn't change, it detects what did change and flags affected beliefs for re-evaluation. This bounds the maintenance cost to changed sources rather than the entire belief set",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "frame-problem",
+            "staleness-detection"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "pass"
+      }
+    },
+    "staleness-detection": {
+      "text": "Staleness detection tracks whether the source material a belief was derived from has changed. Each belief records a source path and SHA-256 hash at creation time. check-stale compares stored hashes against current file content and flags any IN belief whose source has changed",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "frame-problem",
+            "eem-external"
+          ],
+          "outlist": [],
+          "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "frame-problem",
+            "eem-external",
+            "staleness-implementation"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "invalid"
+      }
+    },
+    "staleness-implementation": {
+      "text": "check-stale implementation: each belief records a source path and SHA-256 hash at creation time. check-stale compares stored hashes against current file content and flags any IN belief whose source has changed. Implemented in ftl-reasons CLI.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:ftl-reasons/reasons_lib/cli.py",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "staleness-workflow": {
+      "text": "Staleness workflow: run check-stale after source material changes \u2192 review flagged beliefs \u2192 retract or update beliefs whose sources invalidate them \u2192 let retraction cascades propagate to dependents. This keeps the belief network aligned with current reality",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "staleness-detection",
+            "retraction-cascade"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:beliefs-pi/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {
+        "last_reviewed": "2026-05-29T17:30:21",
+        "review_result": "pass"
+      }
+    },
+    "structure-not-truth": {
+      "text": "A belief being IN means its justification chain is structurally valid within the TMS \u2014 all antecedents are IN. It does not mean the belief is externally verified or true. Structure guarantees consistency, not correspondence with reality",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "sl-justification"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:eem-expert/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "structure-not-truth-applies-to-site": {
+      "text": "The expert.ftl2.com belief explorer demonstrates that TMS mechanics work (justification chains, IN/OUT propagation, retraction cascades) but does not prove the underlying claims are correct. A belief can be IN and fully justified within the system while being wrong, because all antecedents trace back to the same author's observations. Structure proves the tooling; external evidence proves the claims.",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "structure-not-truth",
+            "self-referential-evidence"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "Claude review of llmeem.ai, 2026-06-14",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "tms-addresses-circularity-partially": {
+      "text": "The TMS partially addresses circularity through mechanisms that no self-reported benchmark has: retraction cascades mean correcting one error propagates to all dependents, nogoods record when claims contradict each other, check-stale detects when source material changes under beliefs. These make the system self-correcting but not externally validated",
+      "truth_value": "IN",
+      "justifications": [
+        {
+          "type": "SL",
+          "antecedents": [
+            "hybrid-tms",
+            "staleness-detection",
+            "nogood-mechanism"
+          ],
+          "outlist": [],
+          "label": ""
+        }
+      ],
+      "source": "repo:eem-expert/CLAUDE.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
       "metadata": {}
     },
     "tms-doyle-1979": {
@@ -752,6 +1774,16 @@
       "truth_value": "IN",
       "justifications": [],
       "source": "repo:beliefs-pi/entries/2026/05/06/paper-expert-doyle-1979-belief-network-analysis.md",
+      "source_url": "",
+      "source_hash": "",
+      "date": "",
+      "metadata": {}
+    },
+    "training-finetuning-cost-comparison": {
+      "text": "Model fine-tuning costs $10K-$100K+ for a single domain adaptation, requires ML expertise, and produces a model locked to one provider. Training from scratch costs millions. EEM construction costs ~$300 (Sonnet) to ~$1,500 (Opus) for enterprise scale (13,511 beliefs, 6 departments), requires no ML expertise, and produces a portable knowledge artifact usable by any model. EEM is 10-100x cheaper than fine-tuning and works across providers.",
+      "truth_value": "IN",
+      "justifications": [],
+      "source": "repo:beliefs-pi/entries/2026/05/27/eem-construction-cost-estimate-enterprise-scale.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
@@ -768,13 +1800,25 @@
           ],
           "outlist": [],
           "label": ""
+        },
+        {
+          "type": "SL",
+          "antecedents": [
+            "evidence-depth-ceiling",
+            "depth-reset-methodology"
+          ],
+          "outlist": [],
+          "label": ""
         }
       ],
       "source": "repo:beliefs-pi/CLAUDE.md",
       "source_url": "",
       "source_hash": "",
       "date": "",
-      "metadata": {}
+      "metadata": {
+        "last_reviewed": "2026-05-30T07:02:40",
+        "review_result": "pass"
+      }
     }
   },
   "nogoods": [],
