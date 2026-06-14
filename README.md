@@ -128,7 +128,7 @@ Built from exploration of [benthomasson/ftl-reasons](https://github.com/benthoma
 
 ## Authors
 
-- **Ben Thomasson** ([@benthomasson](https://github.com/benthomasson)) — Principal Software Engineer, Red Hat. Research on external epistemic memory for LLM agents.
+- **Ben Thomasson** ([@benthomasson](https://github.com/benthomasson)) — Senior Principal Software Engineer, Red Hat. Research on external epistemic memory for LLM agents.
 
 ## License
 
